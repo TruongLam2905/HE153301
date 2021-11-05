@@ -69,7 +69,7 @@ public class LoginController extends HttpServlet {
 //        Account account = db.getAccount(user, pass);
         Customer c = cDB.get(user, pass);
         if (c != null) {
-            request.getSession().setAttribute("user", c);
+            request.getSession(false).setAttribute("user", c);
             response.sendRedirect(url);
         } else {
             request.getSession().setAttribute("user", null);

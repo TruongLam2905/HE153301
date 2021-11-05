@@ -150,11 +150,35 @@
                                     <span>Check-Out</span> <br>
                                     <input type="date" name="Out" value="${requestScope.checkOut}"/>
                                 </div>
+                                <div class="header-item">
+                                    <span>Payment Type</span> <br>
+                                    <select name="payment">
+                                        <option value="Cash" >Cash</option>
+                                        <option value="Credit Cards" >Credit Cards</option>
+                                        <option value="Mobile Payments" >Mobile Payments</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <script>
+                        function doBooking()
+                        {
+                            window.alert("Booking Success");
+//                            var c = confirm("Are you sure?");
+//                            if (c)
+//                            {
+//                                window.location.href = "booking?status=1";
+////                                window.alert("Booking Success");
+//                                return true;
+//                            }
+//                            return false;
+                            
+                        }
+                    </script>
                     <div class="Submit-form">
-                        <input class="Submit-form" type="submit" value="Continue Payment" />
+                        <!--<a href="">Continue Booking</a>-->
+                        <input class="Submit-form" type="submit" onclick="doBooking()" value="Continue Payment" />
                     </div>
                 </form>
 

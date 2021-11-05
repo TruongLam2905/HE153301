@@ -43,6 +43,7 @@
                         <li class="nav-item"><a href="about" class="nav-link">About</a></li>
                         <li class="nav-item"><a href="blog" class="nav-link">Blog</a></li>
                         <li class="nav-item"><a href="contact" class="nav-link">Contact</a></li>
+                        <li class="nav-item"><a href="payment" class="nav-link">Payment</a></li>
                         <c:if test="${sessionScope.user.is_admin == true}">
                             <li class="nav-item"><a href="admin" class="nav-link">Manager</a></li>
                         </c:if>

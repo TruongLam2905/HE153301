@@ -5,6 +5,7 @@
  */
 package dal;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Booking;
 import model.Customer;
 
 /**
@@ -98,7 +100,7 @@ public class CustomerDBContext extends DBContext {
             stm.setString(1, user);
             stm.setString(2, pass);
             ResultSet rs = stm.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 Customer c = new Customer();
                 c.setCustomerID(rs.getInt("CustomerID"));
                 c.setName(rs.getString("Name"));
@@ -108,11 +110,38 @@ public class CustomerDBContext extends DBContext {
                 c.setUser(rs.getString("Username"));
                 c.setPass(rs.getString("Password"));
                 c.setIs_admin(rs.getBoolean("is_admin"));
+                insertBookingCus(c);
                 return c;
             }
         } catch (SQLException ex) {
             Logger.getLogger(CustomerDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public void insertBookingCus(Customer c) {
+        try {
+            String sql = "SELECT c.CustomerID,BookingID,RoomID,Reservation_date,Check_in,Check_out,amount,b.[day] \n"
+                    + "FROM Customer c INNER JOIN Booking b on c.CustomerID = b.CustomerID\n"
+                    + "WHERE c.CustomerID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, c.getCustomerID());
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Booking b = new Booking();
+                b.setBookingID(rs.getInt("BookingID"));
+                b.setCheck_in(rs.getDate("Check_in"));
+                b.setCheck_out(rs.getDate("Check_out"));
+                b.setCustomer(c);
+                b.setReservationDate(rs.getDate("Reservation_date"));
+                RoomDBContext rDB = new RoomDBContext();
+                b.setRoom(rDB.getRoom(rs.getInt("RoomID")));
+                b.setAmount(rs.getFloat("amount"));
+                b.setDay(rs.getInt("day"));
+                c.getBookings().add(b);
+            }
+        } catch (SQLException | IOException ex) {
+            Logger.getLogger(CustomerDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

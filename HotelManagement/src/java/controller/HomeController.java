@@ -41,8 +41,9 @@ public class HomeController extends HttpServlet {
             request.getRequestDispatcher("../view/home/homepage.jsp").forward(request, response);
         } else if(action.equals("logout")) {
             HttpSession session = request.getSession();
-            session.removeAttribute("account");
-            request.getRequestDispatcher("../view/home/homepage.jsp").forward(request, response);
+            session.removeAttribute("user");
+            response.sendRedirect("homepage");
+//            request.getRequestDispatcher("../view/home/homepage.jsp").forward(request, response);
         } else if(action.equals("login")) {
             request.getRequestDispatcher("../view/auth/login.jsp").forward(request, response);
         }

@@ -8,6 +8,7 @@ package controller.booking;
 import dal.BookingDBContext;
 import dal.CustomerDBContext;
 import dal.RoomDBContext;
+import dal.TransactionDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -21,6 +22,7 @@ import model.Booking;
 import model.Customer;
 import model.Room;
 import model.RoomType;
+import model.Transaction;
 
 /**
  *
@@ -88,20 +90,53 @@ public class BookingController extends HttpServlet {
         c.setPhone(request.getParameter("phone"));
         CustomerDBContext cDB = new CustomerDBContext();
         RoomDBContext rDB = new RoomDBContext();
+        Customer user = (Customer) request.getSession().getAttribute("user");
         Room room = rDB.getRoom(Integer.parseInt(request.getParameter("NoRoom")));
         room.setRoomStatus(true);
         rDB.changeStatusRoom(room);
         Booking b = new Booking();
-        b.setCustomer(c);
+        b.setCustomer(user);
         b.setRoom(room);
         b.setCheck_in(Date.valueOf(request.getParameter("In")));
         b.setCheck_out(Date.valueOf(request.getParameter("Out")));
         b.setReservationDate(Date.valueOf(request.getParameter("reserDate")));
+        RoomType typeRoom = rDB.getTypeRooms(b.getRoom().getRoomType().getRoomTypeID());
+        int time = (int) ((b.getCheck_out().getTime() - b.getCheck_in().getTime()) / 86400000);
+        float amount = (float) (time * typeRoom.getPrice());
+        b.setAmount((time * (float) typeRoom.getPrice()));
+        b.setDay(time);
         BookingDBContext bDB = new BookingDBContext();
-        c.getBookings().add(b);
-//        bDB.insertBooking(b);
-        
-        response.sendRedirect("payment");
+        user.getBookings().add(b);
+        String payment = request.getParameter("payment");
+//        request.getSession(false).setAttribute("customer", c);
+        TransactionDBContext tDB = new TransactionDBContext();
+        Transaction t = tDB.get(user);
+        if (t == null) {
+            t = new Transaction();
+            t.setCustomer(user);
+            java.util.Date date = new java.util.Date();
+            Date sqlDate = new Date(date.getTime());
+            t.setTrans_date(sqlDate);
+            t.setPaymenttype(payment);
+            tDB.insert(t);
+//            float total = 0;
+//            for (Booking booking : user.getBookings()) {
+//                total += booking.getAmount();
+//            }
+//            t.setTotal(total);
+        }
+        bDB.insertBooking(b);
+        float total = 0;
+        for (Booking booking : user.getBookings()) {
+            total += booking.getAmount();
+        }
+        t.setTotal(total);
+        b.setTrans(t);
+        tDB.update(user, total);
+        request.getSession(false).setAttribute("trans", t);
+
+        response.sendRedirect("isLogged");
+//        response.sendRedirect("payment");
     }
 
     /**

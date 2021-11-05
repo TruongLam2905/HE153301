@@ -11,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Customer;
+import model.Transaction;
 
 /**
  *
@@ -29,6 +31,10 @@ public class PaymentController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Customer customer = (Customer) request.getSession(false).getAttribute("user");
+        Transaction trans = (Transaction) request.getSession(false).getAttribute("trans");
+        request.setAttribute("trans", trans);
+        request.setAttribute("customer", customer);
         request.getRequestDispatcher("../view/booking/payment.jsp").forward(request, response);
     }
 

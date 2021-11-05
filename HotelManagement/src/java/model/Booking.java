@@ -20,7 +20,28 @@ public class Booking {
     private Date check_in;
     private Date check_out;
     private Transaction trans;
+    private float amount;
+    private int day;
 
+    public int getDay() {
+        return (int) (amount/ getRoom().getRoomType().getPrice());
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+    
+    
+
+    public float getAmount() {
+        return amount;
+    }
+
+    public void setAmount(float amount) {
+        this.amount = amount;
+    }
+    
+    
     public Transaction getTrans() {
         return trans;
     }

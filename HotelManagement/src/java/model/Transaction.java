@@ -15,13 +15,22 @@ import java.util.ArrayList;
 public class Transaction {
 
     private int trans_id;
-    private String trans_name;
     private Customer customer;
-    private Employee employee;
     private Date trans_date;
-    private float amount;
+    private float total;
+    private String paymenttype;
     private ArrayList<Booking> Bookings = new ArrayList<>();
 
+    public String getPaymenttype() {
+        return paymenttype;
+    }
+
+    public void setPaymenttype(String paymenttype) {
+        this.paymenttype = paymenttype;
+    }
+
+    
+    
     public ArrayList<Booking> getBookings() {
         return Bookings;
     }
@@ -30,13 +39,15 @@ public class Transaction {
         this.Bookings = Bookings;
     }
 
-    public float getAmount() {
-        return amount;
+    public float getTotal() {
+        return total;
     }
 
-    public void setAmount(float amount) {
-        this.amount = amount;
+    public void setTotal(float total) {
+        this.total = total;
     }
+    
+    
 
     public int getTrans_id() {
         return trans_id;
@@ -46,28 +57,12 @@ public class Transaction {
         this.trans_id = trans_id;
     }
 
-    public String getTrans_name() {
-        return trans_name;
-    }
-
-    public void setTrans_name(String trans_name) {
-        this.trans_name = trans_name;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
     }
 
     public Date getTrans_date() {

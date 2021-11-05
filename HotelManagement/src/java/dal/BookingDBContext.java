@@ -28,9 +28,13 @@ public class BookingDBContext extends DBContext {
                     + "           ,[RoomID]\n"
                     + "           ,[Reservation_date]\n"
                     + "           ,[Check_in]\n"
-                    + "           ,[Check_out])\n"
+                    + "           ,[Check_out]\n"
+                    + "           ,[amount]\n"
+                    + "           ,[day])\n"
                     + "     VALUES\n"
                     + "           (?\n"
+                    + "           ,?\n"
+                    + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?\n"
@@ -41,6 +45,8 @@ public class BookingDBContext extends DBContext {
             stm.setDate(3, b.getReservationDate());
             stm.setDate(4, b.getCheck_in());
             stm.setDate(5, b.getCheck_out());
+            stm.setFloat(6, b.getAmount());
+            stm.setInt(7, b.getDay());
             stm.executeUpdate();
             ResultSet generatedKeys = stm.getGeneratedKeys();
             int id = 0;

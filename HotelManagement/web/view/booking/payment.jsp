@@ -40,7 +40,7 @@
 
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a href="homepage" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="isLogged" class="nav-link">Home</a></li>
                         <li class="nav-item active"><a href="room" class="nav-link">Rooms</a></li>
                         <li class="nav-item"><a href="restaurant" class="nav-link">Restaurant</a></li>
                         <li class="nav-item"><a href="about" class="nav-link">About</a></li>
@@ -91,12 +91,12 @@
                                         <div class="col company-details">
                                             <h2 class="name">
                                                 <a target="_blank" href="javascript:;">
-                                                    Arboshiki
+                                                    Phu Quoc Resort
                                                 </a>
                                             </h2>
-                                            <div>455 Foggy Heights, AZ 85004, US</div>
+                                            <div>Phu Quoc, Viet Nam</div>
                                             <div>(123) 456-789</div>
-                                            <div>company@example.com</div>
+                                            <div>resortphuquoc@gmail.com</div>
                                         </div>
                                     </div>
                                 </header>
@@ -104,15 +104,15 @@
                                     <div class="row contacts">
                                         <div class="col invoice-to">
                                             <div class="text-gray-light">INVOICE TO:</div>
-                                            <h2 class="to">John Doe</h2>
-                                            <div class="address">796 Silver Harbour, TX 79273, US</div>
-                                            <div class="email"><a href="mailto:john@example.com">john@example.com</a>
+                                            <h2 class="to">${requestScope.customer.name}</h2>
+                                            <div class="address">${requestScope.customer.address}</div>
+                                            <div class="email"><a href="${requestScope.customer.email}">${requestScope.customer.email}</a>
                                             </div>
                                         </div>
                                         <div class="col invoice-details">
-                                            <h1 class="invoice-id">INVOICE 3-2-1</h1>
-                                            <div class="date">Date of Invoice: 01/10/2018</div>
-                                            <div class="date">Due Date: 30/10/2018</div>
+                                            <h1 class="invoice-id">${requestScope.trans.trans_id}</h1>
+                                            <div class="date">Date of Invoice: ${requestScope.trans.trans_date}</div>
+                                            <!--<div class="date">Due Date: 30/10/2018</div>-->
                                         </div>
                                     </div>
                                     <table>
@@ -120,13 +120,30 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th class="text-left">DESCRIPTION</th>
-                                                <th class="text-right">HOUR PRICE</th>
-                                                <th class="text-right">HOURS</th>
+                                                <th class="text-right">PER DAY PRICE</th>
+                                                <th class="text-right">DAY</th>
                                                 <th class="text-right">TOTAL</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <c:forEach items="${requestScope.customer.bookings}" var="b">
+                                                <tr>
+                                                    <td class="no">04</td>
+                                                    <td class="text-left">
+                                                        <h3>
+                                                            <a target="_blank" href="javascript:;">
+                                                                ${b.room.roomType.typeName}
+                                                            </a>
+                                                        </h3>
+                                                        <a target="_blank" href="javascript:;">
+                                                            Room ${b.room.roomID}
+                                                        </a></td>
+                                                    <td class="unit">${b.room.roomType.price}</td>
+                                                    <td class="qty">${b.day}</td>
+                                                    <td class="total">${b.amount}</td>
+                                                </tr>
+                                            </c:forEach>
+<!--                                            <tr>
                                                 <td class="no">04</td>
                                                 <td class="text-left">
                                                     <h3>
@@ -164,27 +181,27 @@
                                                 <td class="unit">$40.00</td>
                                                 <td class="qty">20</td>
                                                 <td class="total">$800.00</td>
-                                            </tr>
+                                            </tr>-->
                                         </tbody>
                                         <tfoot>
-                                            <tr>
+<!--                                            <tr>
                                                 <td colspan="2"></td>
                                                 <td colspan="2">SUBTOTAL</td>
                                                 <td>$5,200.00</td>
-                                            </tr>
-                                            <tr>
+                                            </tr>-->
+<!--                                            <tr>
                                                 <td colspan="2"></td>
                                                 <td colspan="2">TAX 25%</td>
                                                 <td>$1,300.00</td>
-                                            </tr>
+                                            </tr>-->
                                             <tr>
                                                 <td colspan="2"></td>
                                                 <td colspan="2">GRAND TOTAL</td>
-                                                <td>$6,500.00</td>
+                                                <td>$${requestScope.trans.total}</td>
                                             </tr>
                                         </tfoot>
                                     </table>
-                                    <div class="thanks">Thank you!</div>
+                                    
                                     <div class="notices">
                                         <div>NOTICE:</div>
                                         <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
