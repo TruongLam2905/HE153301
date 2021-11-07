@@ -14,6 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Booking;
 import model.Customer;
+import model.Room;
+import model.RoomType;
 
 /**
  *
@@ -62,12 +64,12 @@ public class BookingDBContext extends DBContext {
     public ArrayList<Booking> getBooking() {
         ArrayList<Booking> bookings = new ArrayList<>();
         try {
-            String sql = "select BookingID,Reservation_date,Check_in,Check_out,\n"
-                    + "c.CustomerID,c.Name,Phone,Address,Email,r.RoomID,rt.RoomTypeID,\n"
-                    + "RoomStatus,r.Description,TypeName,rt.Description,Price,MaxGuest,Img \n"
-                    + "from Booking b inner join Customer c on b.CustomerID = c.CustomerID\n"
-                    + "						inner join Room r on r.RoomID = b.RoomID\n"
-                    + "						inner join RoomType rt on rt.RoomTypeID = r.RoomTypeID";
+            String sql = "SELECT BookingID,c.CustomerID,c.Name,rt.TypeName,rt.RoomTypeID,rt.Description,rt.MaxGuest,rt.Price,\n"
+                    + "r.RoomID,r.Description,r.RoomStatus,\n"
+                    + "b.Reservation_date,b.Check_in,b.Check_out,\n"
+                    + "c.Email,c.Phone,c.Address,b.[day],b.amount\n"
+                    + "FROM Booking b INNER JOIN Customer c on b.CustomerID = c.CustomerID\n"
+                    + "INNER JOIN Room r on r.RoomID = b.RoomID INNER JOIN RoomType rt on rt.RoomTypeID = r.RoomTypeID";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -76,19 +78,45 @@ public class BookingDBContext extends DBContext {
                 b.setReservationDate(rs.getDate("Reservation_date"));
                 b.setCheck_in(rs.getDate("Check_in"));
                 b.setCheck_out(rs.getDate("Check_out"));
+                b.setDay(rs.getInt("day"));
+                b.setAmount(rs.getFloat("amount"));
                 Customer c = new Customer();
-                c.setCustomerID(rs.getInt("c.CustomerID"));
-                c.setName(rs.getString("c.Name"));
+                c.setCustomerID(rs.getInt("CustomerID"));
+                c.setName(rs.getString("Name"));
                 c.setPhone(rs.getString("Phone"));
                 c.setAddress(rs.getString("Address"));
                 c.setEmail(rs.getString("Email"));
                 b.setCustomer(c);
-
+                Room r = new Room();
+                r.setRoomID(rs.getInt("RoomID"));
+                r.setDescription(rs.getString("Description"));
+                r.setRoomStatus(rs.getBoolean("RoomStatus"));
+                RoomType rt = new RoomType();
+                rt.setRoomTypeID(rs.getInt("RoomTypeID"));
+                rt.setTypeName(rs.getString("TypeName"));
+                rt.setDescription(rs.getString("Description"));
+                rt.setPrice(rs.getDouble("Price"));
+                rt.getRooms().add(r);
+                r.setRoomType(rt);
+                b.setRoom(r);
+                bookings.add(b);
             }
         } catch (SQLException ex) {
             Logger.getLogger(BookingDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return bookings;
+    }
+
+    public void delete(int BookingID) {
+        try {
+            String sql = "DELETE FROM [Booking]\n"
+                    + "      WHERE BookingID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, BookingID);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(BookingDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 //    public Booking getBooking(int RoomTypeID) {
@@ -100,14 +128,20 @@ public class BookingDBContext extends DBContext {
 //                    + "      ,[Check_in]\n"
 //                    + "      ,[Check_out]\n"
 //                    + "      ,[trans_id]\n"
+//                    + "      ,[amount]\n"
+//                    + "      ,[day]\n"
 //                    + "  FROM [Booking] WHERE CustomerID = ?";
 //            PreparedStatement stm = connection.prepareStatement(sql);
 //            stm.setInt(1, RoomTypeID);
 //            ResultSet rs = stm.executeQuery();
-//            if(rs.next()) {
+//            if (rs.next()) {
 //                Booking b = new Booking();
 //                b.setBookingID(rs.getInt("BookingID"));
-//                b.setCustomer(customer);
+//                b.setReservationDate(rs.getDate("Reservation_date"));
+//                b.setCheck_in(rs.getDate("Check_in"));
+//                b.setCheck_out(rs.getDate("Check_out"));
+//                b.setAmount(rs.getFloat("amount"));
+//                b.setDay(rs.getInt("day"));
 //            }
 //
 //        } catch (SQLException ex) {

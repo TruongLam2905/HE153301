@@ -25,7 +25,14 @@ public class CustomerDBContext extends DBContext {
     public ArrayList<Customer> getCustomers() {
         ArrayList<Customer> customers = new ArrayList<>();
         try {
-            String sql = "Select CustomerID,[Name],Phone,[Address],Email from customer";
+            String sql = "SELECT [CustomerID]\n"
+                    + "      ,[Name]\n"
+                    + "      ,[Phone]\n"
+                    + "      ,[Address]\n"
+                    + "      ,[Email]\n"
+                    + "      ,[Username]\n"
+                    + "      ,[Password]\n"
+                    + "  FROM [Customer] WHERE is_admin = 0";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -34,6 +41,10 @@ public class CustomerDBContext extends DBContext {
                 c.setName(rs.getString("Name"));
                 c.setPhone(rs.getString("Phone"));
                 c.setEmail(rs.getString("Email"));
+                c.setAddress(rs.getString("Address"));
+                c.setIs_admin(false);
+                c.setUser(rs.getString("Username"));
+                c.setPass(rs.getString("Password"));
                 customers.add(c);
             }
         } catch (SQLException ex) {
@@ -99,6 +110,39 @@ public class CustomerDBContext extends DBContext {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, user);
             stm.setString(2, pass);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                Customer c = new Customer();
+                c.setCustomerID(rs.getInt("CustomerID"));
+                c.setName(rs.getString("Name"));
+                c.setPhone(rs.getString("Phone"));
+                c.setAddress(rs.getString("Address"));
+                c.setEmail(rs.getString("Email"));
+                c.setUser(rs.getString("Username"));
+                c.setPass(rs.getString("Password"));
+                c.setIs_admin(rs.getBoolean("is_admin"));
+                insertBookingCus(c);
+                return c;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public Customer get(int id) {
+        try {
+            String sql = "SELECT [CustomerID]\n"
+                    + "      ,[Name]\n"
+                    + "      ,[Phone]\n"
+                    + "      ,[Address]\n"
+                    + "      ,[Email]\n"
+                    + "      ,[Username]\n"
+                    + "      ,[Password]\n"
+                    + "	  ,is_admin\n"
+                    + "  FROM [Customer] WHERE CustomerID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, id);
             ResultSet rs = stm.executeQuery();
             if (rs.next()) {
                 Customer c = new Customer();

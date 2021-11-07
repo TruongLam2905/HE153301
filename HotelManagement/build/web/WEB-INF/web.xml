@@ -70,7 +70,7 @@
     </servlet>
     <servlet>
         <servlet-name>BookingUpdateController</servlet-name>
-        <servlet-class>controller.booking.BookingUpdateController</servlet-class>
+        <servlet-class>controller.admin.booking.BookingUpdateController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AllRoomController</servlet-name>
@@ -87,6 +87,22 @@
     <servlet>
         <servlet-name>PaymentController</servlet-name>
         <servlet-class>controller.booking.PaymentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllBookingController</servlet-name>
+        <servlet-class>controller.admin.booking.AllBookingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookingDeleteController</servlet-name>
+        <servlet-class>controller.admin.booking.BookingDeleteController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllCustomerController</servlet-name>
+        <servlet-class>controller.admin.customer.AllCustomerController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerUpdateController</servlet-name>
+        <servlet-class>controller.admin.customer.CustomerUpdateController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>TestController</servlet-name>
@@ -167,6 +183,22 @@
     <servlet-mapping>
         <servlet-name>PaymentController</servlet-name>
         <url-pattern>/view/payment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllBookingController</servlet-name>
+        <url-pattern>/view/allbooking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookingDeleteController</servlet-name>
+        <url-pattern>/view/bookingdelete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllCustomerController</servlet-name>
+        <url-pattern>/view/allcustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerUpdateController</servlet-name>
+        <url-pattern>/view/updatecustomer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.booking;
+package controller.admin.booking;
 
+import dal.BookingDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -29,7 +30,10 @@ public class BookingUpdateController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("../view/admin/booking/bookingupdate.jsp").forward(request, response);
+        String bookingID = request.getParameter("id");
+        BookingDBContext bDB = new BookingDBContext();
+        bDB.delete(Integer.parseInt(bookingID));
+        response.sendRedirect("allbooking");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

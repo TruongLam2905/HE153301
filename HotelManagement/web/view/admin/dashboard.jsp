@@ -142,7 +142,7 @@
                             <li class="submenu"> <a href="#"><i class="fas fa-suitcase"></i> <span> Booking </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
-                                    <li><a href="bookingdetail"> All Booking </a></li>
+                                    <li><a href="allbooking"> All Booking </a></li>
                                     <li><a href="bookingupdate"> Edit Booking </a></li>
                                     <li><a href="add-booking.html"> Add Booking </a></li>
                                 </ul>
