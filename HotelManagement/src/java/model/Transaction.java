@@ -19,7 +19,16 @@ public class Transaction {
     private Date trans_date;
     private float total;
     private String paymenttype;
+    private boolean ispaid;
     private ArrayList<Booking> Bookings = new ArrayList<>();
+
+    public boolean isIspaid() {
+        return ispaid;
+    }
+
+    public void setIspaid(boolean ispaid) {
+        this.ispaid = ispaid;
+    }
 
     public String getPaymenttype() {
         return paymenttype;
@@ -29,8 +38,6 @@ public class Transaction {
         this.paymenttype = paymenttype;
     }
 
-    
-    
     public ArrayList<Booking> getBookings() {
         return Bookings;
     }
@@ -46,8 +53,6 @@ public class Transaction {
     public void setTotal(float total) {
         this.total = total;
     }
-    
-    
 
     public int getTrans_id() {
         return trans_id;

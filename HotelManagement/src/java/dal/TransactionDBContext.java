@@ -8,6 +8,7 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Customer;
@@ -77,6 +78,38 @@ public class TransactionDBContext extends DBContext {
         } catch (SQLException ex) {
             Logger.getLogger(TransactionDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public ArrayList<Transaction> getAll() {
+        ArrayList<Transaction> trans = new ArrayList<>();
+        try {
+            String sql = "SELECT trans_id,CustomerID,trans_date,total,payment_type,is_paid,Name,Phone,\n"
+                    + "Address,Email,Username,Password,is_admin\n"
+                    + "FROM Transactions t INNER JOIN Customer c on t.cus_id = c.CustomerID";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Transaction t = new Transaction();
+                t.setTrans_id(rs.getInt("trans_id"));
+                t.setPaymenttype(rs.getString("payment_type"));
+                t.setTotal(rs.getFloat("total"));
+                t.setTrans_date(rs.getDate("trans_date"));
+                Customer c = new Customer();
+                c.setCustomerID(rs.getInt("CustomerID"));
+                c.setAddress(rs.getString("Address"));
+                c.setEmail(rs.getString("Email"));
+                c.setName(rs.getString("Name"));
+                c.setPhone(rs.getString("Phone"));
+                c.setUser(rs.getString("Username"));
+                c.setPass(rs.getString("Password"));
+                c.setIs_admin(false);
+                t.setCustomer(c);
+                trans.add(t);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TransactionDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return trans;
     }
 
 }

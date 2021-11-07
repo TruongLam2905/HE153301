@@ -25,7 +25,7 @@
                 <div class="header-left">
                     <a href="index.html" class="logo"> <img src="${contextPath}/images/images.png" width="50" height="70"
                                                             alt="logo"> <span class="logoclass">HOTEL</span> </a>
-                    <a href="index.html" class="logo logo-small"> <img src="${contextPath}/css/assets/img/hotel_logo.png" alt="Logo" width="30"
+                    <a href="index.html" class="logo logo-small"> <img src="${contextPath}/images/images.png" alt="Logo" width="30"
                                                                        height="30"> </a>
                 </div>
                 <a href="javascript:void(0);" id="toggle_btn"> <i class="fe fe-text-align-left"></i> </a>
@@ -58,7 +58,7 @@
                                         <a href="#">
                                             <div class="media"> <span class="avatar avatar-sm">
                                                     <img class="avatar-img rounded-circle" alt="User Image"
-                                                         src="${contextPath}/css/assets/img/profiles/avatar-11.jpg">
+                                                         src="${contextPath}/css/assets/img/profiles/cat.jpg">
                                                 </span>
                                                 <div class="media-body">
                                                     <p class="noti-details"><span class="noti-title">International Software
@@ -109,17 +109,17 @@
                     </li>
                     <li class="nav-item dropdown has-arrow">
                         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span class="user-img"><img
-                                    class="rounded-circle" src="${contextPath}/css/assets/img/profiles/avatar-01.jpg" width="31"
+                                    class="rounded-circle" src="${contextPath}/css/assets/img/profiles/cat.jpg" width="31"
                                     alt="Soeng Souy"></span> </a>
                         <div class="dropdown-menu">
                             <div class="user-header">
-                                <div class="avatar avatar-sm"> <img src="${contextPath}/css/assets/img/profiles/avatar-01.jpg" alt="User Image"
+                                <div class="avatar avatar-sm"> <img src="${contextPath}/css/assets/img/profiles/cat.jpg" alt="User Image"
                                                                     class="avatar-img rounded-circle"> </div>
                                 <div class="user-text">
-                                    <h6>Soeng Souy</h6>
+                                    <h6>${sessionScope.user.name}</h6>
                                     <p class="text-muted mb-0">Administrator</p>
                                 </div>
-                            </div> <a class="dropdown-item" href="profile.html">My Profile</a> <a class="dropdown-item"
+                            </div> <a class="dropdown-item" href="profile">My Profile</a> <a class="dropdown-item"
                                                                                                   href="settings.html">Account Settings</a> <a class="dropdown-item"
                                                                                                   href="login.html">Logout</a>
                         </div>
@@ -144,35 +144,35 @@
                                 <ul class="submenu_class" style="display: none;">
                                     <li><a href="allbooking"> All Booking </a></li>
                                     <li><a href="bookingupdate"> Edit Booking </a></li>
-                                    <li><a href="add-booking.html"> Add Booking </a></li>
+                                    <!--<li><a href="add-booking.html"> Add Booking </a></li>-->
                                 </ul>
                             </li>
                             <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
-                                    <li><a href="all-customer.html"> All customers </a></li>
-                                    <li><a href="edit-customer.html"> Edit Customer </a></li>
-                                    <li><a href="add-customer.html"> Add Customer </a></li>
+                                    <li><a href="allcustomer"> All customers </a></li>
+                                    <li><a href="updatecustomer"> Edit Customer </a></li>
+                                    <li><a href="addcustomer"> Add Customer </a></li>
                                 </ul>
                             </li>
-                            <li class="submenu"> <a href="#"><i class="fas fa-key"></i> <span> Rooms </span> <span
+                            <li class="submenu"> <a href="#"><i class="fas fa-key"></i> <span> Type Rooms </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
-                                    <li><a href="allroom">All Rooms </a></li>
-                                    <li><a href="roomupdate"> Edit Rooms </a></li>
-                                    <li><a href="addroom"> Add Rooms </a></li>
+                                    <li><a href="allroom">All TypeRooms </a></li>
+                                    <li><a href="roomupdate"> Edit TypeRooms </a></li>
+                                    <li><a href="addroom"> Add TypeRooms </a></li>
                                 </ul>
                             </li>
-                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Staff </span> <span
+                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Rooms </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
-                                    <li><a href="all-staff.html">All Staff </a></li>
-                                    <li><a href="edit-staff.html"> Edit Staff </a></li>
-                                    <li><a href="add-staff.html"> Add Staff </a></li>
+                                    <li><a href="listEachroom">All Rooms </a></li>
+                                    <li><a href="edit-staff.html"> Edit Rooms </a></li>
+                                    <li><a href="addeachroom"> Add Rooms </a></li>
                                 </ul>
                             </li>
                             <li> <a href="pricing.html"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
-                            <li class="submenu"> <a href="#"><i class="fas fa-share-alt"></i> <span> Apps </span> <span
+<!--                            <li class="submenu"> <a href="#"><i class="fas fa-share-alt"></i> <span> Apps </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
                                     <li><a href="chat.html"><i class="fas fa-comments"></i><span> Chat </span></a></li>
@@ -193,8 +193,8 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>
-                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Employees </span> <span
+                            </li>-->
+<!--                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Employees </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
                                     <li><a href="employees.html">Employees List </a></li>
@@ -203,17 +203,17 @@
                                     <li><a href="attendance.html">Attendance </a></li>
                                 </ul>
                             </li>
-                            <li class="submenu"> <a href="#"><i class="far fa-money-bill-alt"></i> <span> Accounts </span>
+-->                            <li class="submenu"> <a href="#"><i class="far fa-money-bill-alt"></i> <span> Accounts </span>
                                     <span class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
-                                    <li><a href="invoices.html">Invoices </a></li>
+                                    <li><a href="transaction">Invoices </a></li>
                                     <li><a href="payments.html">Payments </a></li>
                                     <li><a href="expenses.html">Expenses </a></li>
                                     <li><a href="taxes.html">Taxes </a></li>
                                     <li><a href="provident-fund.html">Provident Fund </a></li>
                                 </ul>
                             </li>
-                            <li class="submenu"> <a href="#"><i class="fas fa-book"></i> <span> Payroll </span> <span
+<!--                            <li class="submenu"> <a href="#"><i class="fas fa-book"></i> <span> Payroll </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
                                     <li><a href="salary.html">Employee Salary </a></li>
@@ -229,8 +229,8 @@
                                     <li><a href="add-blog.html">Add Blog </a></li>
                                     <li><a href="edit-blog.html">Edit Blog </a></li>
                                 </ul>
-                            </li>
-                            <li> <a href="assets.html"><i class="fas fa-cube"></i> <span>Assests</span></a> </li>
+                            </li>-->
+<!--                            <li> <a href="assets.html"><i class="fas fa-cube"></i> <span>Assests</span></a> </li>
                             <li> <a href="activities.html"><i class="far fa-bell"></i> <span>Activities</span></a> </li>
                             <li class="submenu"> <a href="#"><i class="fe fe-table"></i> <span> Reports </span> <span
                                         class="menu-arrow"></span></a>
@@ -249,8 +249,8 @@
                                     <li><a href="typography.html">Typography </a></li>
                                     <li><a href="tabs.html">Tabs </a></li>
                                 </ul>
-                            </li>
-                            <li class="submenu"> <a href="#"><i class="fas fa-edit"></i> <span> Forms </span> <span
+                            </li>-->
+<!--                            <li class="submenu"> <a href="#"><i class="fas fa-edit"></i> <span> Forms </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
                                     <li><a href="form-basic-inputs.html">Basic Input </a></li>
@@ -289,7 +289,7 @@
                                     <li><a href="">Level 1 </a></li>
                                     <li><a href="">Level 2 </a></li>
                                 </ul>
-                            </li>
+                            </li>-->
                         </ul>
                     </div>
                 </div>
@@ -299,7 +299,7 @@
                     <div class="page-header">
                         <div class="row">
                             <div class="col-sm-12 mt-5">
-                                <h3 class="page-title mt-3">Good Morning Soeng Souy!</h3>
+                                <h3 class="page-title mt-3">Good Morning ${sessionScope.user.name}</h3>
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item active">Dashboard</li>
                                 </ul>
@@ -312,7 +312,7 @@
                                 <div class="card-body">
                                     <div class="dash-widget-header">
                                         <div>
-                                            <h3 class="card_widget_header">236</h3>
+                                            <h3 class="card_widget_header">${requestScope.total}</h3>
                                             <h6 class="text-muted">Total Booking</h6>
                                         </div>
                                         <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"><svg
@@ -334,7 +334,7 @@
                                 <div class="card-body">
                                     <div class="dash-widget-header">
                                         <div>
-                                            <h3 class="card_widget_header">180</h3>
+                                            <h3 class="card_widget_header">${requestScope.totalroom}</h3>
                                             <h6 class="text-muted">Available Rooms</h6>
                                         </div>
                                         <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"><svg
@@ -349,7 +349,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-sm-6 col-12">
+<!--                        <div class="col-xl-3 col-sm-6 col-12">
                             <div class="card board1 fill">
                                 <div class="card-body">
                                     <div class="dash-widget-header">
@@ -371,8 +371,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12">
+                        </div>-->
+<!--                        <div class="col-xl-3 col-sm-6 col-12">
                             <div class="card board1 fill">
                                 <div class="card-body">
                                     <div class="dash-widget-header">
@@ -394,7 +394,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="row">
                         <div class="col-md-12 col-lg-6">
@@ -423,7 +423,8 @@
                             <div class="card card-table flex-fill">
                                 <div class="card-header">
                                     <h4 class="card-title float-left mt-2">Booking</h4>
-                                    <button type="button" class="btn btn-primary float-right veiwbutton">Veiw All</button>
+                                    <!--<button type="button" class="btn btn-primary float-right veiwbutton">View All</button>-->
+                                    <a href="allbooking" class="btn btn-primary float-right veiwbutton">View All</a>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -432,99 +433,30 @@
                                                 <tr>
                                                     <th>Booking ID</th>
                                                     <th>Name</th>
-                                                    <th>Email ID</th>
-                                                    <th>Aadhar Number</th>
+                                                    <th>Email</th>
                                                     <th class="text-center">Room Type</th>
                                                     <th class="text-right">Number</th>
                                                     <th class="text-center">Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                                <c:forEach items="${requestScope.bookings}" var="b">
+                                                    <tr>
                                                     <td class="text-nowrap">
-                                                        <div>BKG-0001</div>
+                                                        <div>${b.bookingID}</div>
                                                     </td>
-                                                    <td class="text-nowrap">Tommy Bernal</td>
-                                                    <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                           data-cfemail="3743585a5a4e55524559565b77524f565a475b521954585a">[email&#160;protected]</a>
-                                                    </td>
-                                                    <td>12414786454545</td>
-                                                    <td class="text-center">Double</td>
+                                                    <td class="text-nowrap">${b.customer.name}</td>
+                                                    <td>${b.customer.email}</td>
+                                                    <td class="text-center">${b.room.roomType.typeName}</td>
                                                     <td class="text-right">
-                                                        <div>631-254-6480</div>
+                                                        <div>${b.customer.phone}</div>
                                                     </td>
                                                     <td class="text-center"> <span
                                                             class="badge badge-pill bg-success inv-badge">INACTIVE</span>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">
-                                                        <div>BKG-0002</div>
-                                                    </td>
-                                                    <td class="text-nowrap">Ellen Thill</td>
-                                                    <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                           data-cfemail="89fbe0eae1e8fbedebfbe6ebfafdc9ecf1e8e4f9e5eca7eae6e4">[email&#160;protected]</a>
-                                                    </td>
-                                                    <td>5456223232322</td>
-                                                    <td class="text-center">Double</td>
-                                                    <td class="text-right">
-                                                        <div>830-468-1042</div>
-                                                    </td>
-                                                    <td class="text-center"> <span
-                                                            class="badge badge-pill bg-success inv-badge">INACTIVE</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">
-                                                        <div>BKG-0003</div>
-                                                    </td>
-                                                    <td class="text-nowrap">Corina Kelsey</td>
-                                                    <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                           data-cfemail="76131a1a1318021e1f1a1a36130e171b061a135815191b">[email&#160;protected]</a>
-                                                    </td>
-                                                    <td>454543232625</td>
-                                                    <td class="text-center">Single</td>
-                                                    <td class="text-right">
-                                                        <div>508-335-5531</div>
-                                                    </td>
-                                                    <td class="text-center"> <span
-                                                            class="badge badge-pill bg-success inv-badge">INACTIVE</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">
-                                                        <div>BKG-0004</div>
-                                                    </td>
-                                                    <td class="text-nowrap">Carolyn Lane</td>
-                                                    <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                           data-cfemail="50333f22393e313b353c23352910373d31393c7e333f3d">[email&#160;protected]</a>
-                                                    </td>
-                                                    <td>2368989562621</td>
-                                                    <td class="text-center">Double</td>
-                                                    <td class="text-right">
-                                                        <div>262-260-1170</div>
-                                                    </td>
-                                                    <td class="text-center"> <span
-                                                            class="badge badge-pill bg-success inv-badge">INACTIVE</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">
-                                                        <div>BKG-0005</div>
-                                                    </td>
-                                                    <td class="text-nowrap">Denise</td>
-                                                    <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                           data-cfemail="1c7f7d6e73706572707d72795c7b717d7570327f7371">[email&#160;protected]</a>
-                                                    </td>
-                                                    <td>3245455582287</td>
-                                                    <td class="text-center">Single</td>
-                                                    <td class="text-right">
-                                                        <div>570-458-0070</div>
-                                                    </td>
-                                                    <td class="text-center"> <span
-                                                            class="badge badge-pill bg-success inv-badge">INACTIVE</span>
-                                                    </td>
-                                                </tr>
+                                                </c:forEach>
+                                                
                                             </tbody>
                                         </table>
                                     </div>

@@ -22,6 +22,8 @@ public class Customer {
     private String pass;
     private boolean is_admin;
 
+    
+    
     public String getUser() {
         return user;
     }

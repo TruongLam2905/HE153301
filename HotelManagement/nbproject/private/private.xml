@@ -3,13 +3,33 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/dal/CustomerDBContext.java</file>
-            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/dal/AccountDBContext.java</file>
-            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/filter/FilterLogin.java</file>
-            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/dal/DBContext.java</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/web/view/admin/eachRoom/allEachroom.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/web/view/admin/customer/allcustomer.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/controller/admin/customer/CustomerUpdateController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/web/view/booking/booking.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/web/view/admin/room/allroom.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/web/view/home/isLogged.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/controller/admin/booking/BookingDeleteController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/model/Room.java</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/model/RoomType.java</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/model/Customer.java</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/web/view/admin/room/addroom.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/web/view/admin/eachRoom/addeachRoom.jsp</file>
             <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/controller/authentication/LoginController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/controller/room/AddRoomController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/web/view/admin/booking/bookingupdate.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/dal/CustomerDBContext.java</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/controller/admin/booking/AllBookingController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/web/view/home/homepage.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/controller/admin/booking/BookingUpdateController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/filter/FilterLogin.java</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/web/view/admin/booking/allbooking.jsp</file>
             <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/dal/BookingDBContext.java</file>
-            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/controller/booking/BookingController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/controller/eachroom/eachRoomController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/controller/admin/customer/CustomerDeleteController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/src/java/controller/eachroom/AddEachRoomController.java</file>
+            <file>file:/C:/Users/Admin/Desktop/HE153301/HotelManagement/web/view/admin/customer/updatecustomer.jsp</file>
         </group>
     </open-files>
 </project-private>

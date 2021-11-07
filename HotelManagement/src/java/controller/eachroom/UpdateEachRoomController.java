@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.admin;
+package controller.eachroom;
 
-import dal.BookingDBContext;
 import dal.RoomDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,15 +13,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Booking;
-import model.Customer;
 import model.Room;
+import model.RoomType;
 
 /**
  *
  * @author Admin
  */
-public class AdminController extends HttpServlet {
+public class UpdateEachRoomController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,23 +31,7 @@ public class AdminController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        BookingDBContext bDB = new BookingDBContext();
-        ArrayList<Booking> bookings = bDB.getBooking();
-        request.setAttribute("bookings", bookings);
-        request.setAttribute("total", bookings.size());
-        RoomDBContext rDB = new RoomDBContext();
-        ArrayList<Room> allRooms = rDB.getAllRooms();
-        int total = 0;
-        for (Room room : allRooms) {
-            if(!room.isRoomStatus()) {
-                total++;
-            }
-        }
-        request.setAttribute("totalroom", total);
-        request.getRequestDispatcher("../view/admin/dashboard.jsp").forward(request, response);
-    }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -63,7 +45,12 @@ public class AdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        RoomDBContext rDB = new RoomDBContext();
+        Room room = rDB.getRoom(Integer.parseInt(request.getParameter("id")));
+        request.setAttribute("room", room);
+        ArrayList<RoomType> typeRooms = rDB.getTypeRooms();
+        request.setAttribute("typeRooms", typeRooms);
+        request.getRequestDispatcher("../view/admin/eachRoom/updateeachroom.jsp").forward(request, response);
     }
 
     /**
@@ -77,7 +64,14 @@ public class AdminController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        RoomDBContext rDB = new RoomDBContext();
+        Room r = new Room();
+        r.setRoomID(Integer.parseInt(request.getParameter("roomid")));
+        r.setDescription(request.getParameter("desc"));
+        RoomType typeRooms = rDB.getTypeRooms(Integer.parseInt(request.getParameter("typeID")));
+        r.setRoomType(typeRooms);
+        rDB.update(r);
+        response.sendRedirect("listEachroom");
     }
 
     /**

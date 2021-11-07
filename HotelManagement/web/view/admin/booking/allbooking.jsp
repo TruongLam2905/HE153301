@@ -273,9 +273,12 @@
                                             }
                                             function doDelete(id)
                                             {
-//                                                var c = confirm("Are you sure?");
+                                                var c = confirm("Are you sure?");
+                                                if (c) {
+                                                    window.alert(id);
+                                                    window.location.href = "bookingdelete?id=" + id;
+                                                }
 
-                                                window.location.href = "bookingdelete?id=" + id;
                                             }
                                         </script>
                                         <table class="datatable table table-stripped table table-hover table-center mb-0">
@@ -316,20 +319,25 @@
                                                         </td>
                                                         <td class="text-right">
                                                             <div class="dropdown dropdown-action"> <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v ellipse_color"></i></a>
-                                                                <div class="dropdown-menu dropdown-menu-right"> <a class="dropdown-item" href="bookingupdate?id=${b.bookingID}"><i class="fas fa-pencil-alt m-r-5"></i> Edit</a> <a class="dropdown-item" href="bookingdelete?id=${b.bookingID}" data-toggle="modal" data-target="#delete_asset"><i class="fas fa-trash-alt m-r-5"></i> Delete</a> </div>
+                                                                <div class="dropdown-menu dropdown-menu-right"> 
+                                                                    <a class="dropdown-item" href="bookingupdate?id=${b.bookingID}"><i class="fas fa-pencil-alt m-r-5"></i> Edit</a>
+                                                                    <a class="dropdown-item" href="bookingdelete?id=${b.bookingID}" onclick="doDelete(${b.bookingID})" ><i class="fas fa-trash-alt m-r-5"></i> 
+                                                                        Delete
+                                                                    </a> 
+                                                                </div>
                                                             </div>
-                                                            <div id="delete_asset" class="modal fade delete-modal" role="dialog">
+<!--                                                            <div id="delete_asset" class="modal fade delete-modal" role="dialog">
                                                                 <div class="modal-dialog modal-dialog-centered">
                                                                     <div class="modal-content">
                                                                         <div class="modal-body text-center"> <img src="assets/img/sent.png" alt="" width="50" height="46">
                                                                             <h3 class="delete_class">Are you sure want to delete this Asset?</h3>
-                                                                            <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                                                                                <button type="submit" onclick="doDelete(${b.bookingID})" class="btn btn-danger">Delete</button>
+                                                                            <div class="m-t-20"> <a href="bookingupdate?id=${b.bookingID}" class="btn btn-white" data-dismiss="modal">Close</a>
+                                                                                <input type="submit" onclick="doDelete(${b.bookingID})" class="btn btn-danger" value="Delete"/>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </div>-->
                                                         </td>
                                                     </tr> 
                                                 </c:forEach>
@@ -342,18 +350,18 @@
                         </div>
                     </div>
                 </div>
-<!--                <div id="delete_asset" class="modal fade delete-modal" role="dialog">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-body text-center"> <img src="assets/img/sent.png" alt="" width="50" height="46">
-                                <h3 class="delete_class">Are you sure want to delete this Asset?</h3>
-                                <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                                    <button type="submit" onclick="doDelete(${b.bookingID})" class="btn btn-danger">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
+                <!--                <div id="delete_asset" class="modal fade delete-modal" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-body text-center"> <img src="assets/img/sent.png" alt="" width="50" height="46">
+                                                <h3 class="delete_class">Are you sure want to delete this Asset?</h3>
+                                                <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
+                                                    <button type="submit" onclick="doDelete(${b.bookingID})" class="btn btn-danger">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
             </div>
         </div>
         <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>

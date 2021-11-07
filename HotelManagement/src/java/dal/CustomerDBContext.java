@@ -96,6 +96,44 @@ public class CustomerDBContext extends DBContext {
         }
     }
 
+    public void update(Customer c) {
+        try {
+            String sql = "UPDATE [Customer]\n"
+                    + "   SET [Name] = ?\n"
+                    + "      ,[Phone] = ?\n"
+                    + "      ,[Address] = ?\n"
+                    + "      ,[Email] = ?\n"
+                    + "      ,[Username] = ?\n"
+                    + "      ,[Password] = ?\n"
+                    + "      ,[is_admin] = ?\n"
+                    + " WHERE CustomerID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, c.getName());
+            stm.setString(2, c.getPhone());
+            stm.setString(3, c.getAddress());
+            stm.setString(4, c.getEmail());
+            stm.setString(5, c.getUser());
+            stm.setString(6, c.getPass());
+            stm.setBoolean(7, c.isIs_admin());
+            stm.setInt(8, c.getCustomerID());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void delete(int customerID) {
+        try {
+            String sql = "DELETE FROM [Customer]\n"
+                    + "      WHERE CustomerID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, customerID);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(BookingDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public Customer get(String user, String pass) {
         try {
             String sql = "SELECT [CustomerID]\n"

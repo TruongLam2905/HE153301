@@ -60,6 +60,18 @@ public class CustomerUpdateController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Customer c = new Customer();
+        c.setCustomerID(Integer.parseInt(request.getParameter("id")));
+        c.setAddress(request.getParameter("address"));
+        c.setEmail(request.getParameter("email"));
+        c.setIs_admin(false);
+        c.setName(request.getParameter("name"));
+        c.setPhone(request.getParameter("phone"));
+        c.setUser(request.getParameter("user"));
+        c.setPass(request.getParameter("pass"));
+        CustomerDBContext cDb = new CustomerDBContext();
+        cDb.update(c);
+        response.sendRedirect("allcustomer");
     }
 
     /**

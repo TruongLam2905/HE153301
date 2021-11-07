@@ -1,6 +1,6 @@
 <%-- 
-    Document   : allcustomer
-    Created on : Nov 7, 2021, 7:09:10 PM
+    Document   : roomupdate
+    Created on : Nov 1, 2021, 4:06:50 PM
     Author     : Admin
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,6 +18,7 @@
         <link rel="stylehseet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
         <link rel="stylesheet" href="${contextPath}/css/assets/plugins/morris/morris.css">
         <link rel="stylesheet" href="${contextPath}/css/assets/css/style.css">
+        <link href="${contextPath}/css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div class="main-wrapper">
@@ -120,23 +121,23 @@
                             </li>
                             <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
-                                    <li><a class="active" href="all-customer.html"> All customers </a></li>
+                                    <li><a href="all-customer.html"> All customers </a></li>
                                     <li><a href="edit-customer.html"> Edit Customer </a></li>
                                     <li><a href="add-customer.html"> Add Customer </a></li>
                                 </ul>
                             </li>
-                            <li class="submenu"> <a href="#"><i class="fas fa-key"></i> <span> Rooms </span> <span class="menu-arrow"></span></a>
+                            <li class="submenu"> <a href="#"><i class="fas fa-key"></i> <span> Type Rooms </span> <span class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
-                                    <li><a href="all-rooms.html">All Rooms </a></li>
-                                    <li><a href="edit-room.html"> Edit Rooms </a></li>
-                                    <li><a href="add-room.html"> Add Rooms </a></li>
+                                    <li><a  href="all-rooms.html">All TypeRooms </a></li>
+                                    <li><a href="edit-room.html"> Edit TypeRooms </a></li>
+                                    <li><a href="addroom"> Add TypeRooms </a></li>
                                 </ul>
                             </li>
-                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Staff </span> <span class="menu-arrow"></span></a>
+                            <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Room </span> <span class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
-                                    <li><a href="all-staff.html">All Staff </a></li>
-                                    <li><a href="edit-staff.html"> Edit Staff </a></li>
-                                    <li><a href="add-staff.html"> Add Staff </a></li>
+                                    <li><a href="listEachroom">All Room </a></li>
+                                    <li><a href="edit-staff.html"> Edit Room </a></li>
+                                    <li><a class="active" href="add-staff.html"> Add Room </a></li>
                                 </ul>
                             </li>
                             <li> <a href="pricing.html"><i class="far fa-money-bill-alt"></i> <span>Pricing</span></a> </li>
@@ -254,104 +255,74 @@
                     <div class="page-header">
                         <div class="row align-items-center">
                             <div class="col">
-                                <div class="mt-5">
-                                    <h4 class="card-title float-left mt-2">Customers</h4> <a href="add-customer.html" class="btn btn-primary float-right veiwbutton">Add Customers</a> </div>
-                            </div>
+                                <h3 class="page-title mt-5">Add Room</h3> </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card card-table">
-                                <div class="card-body booking_card">
-                                    <script>
-                                        function doUpdate(id)
-                                        {
-                                            window.location.href = "../view/auth/login.jsp";
-                                        }
-                                        function doDelete(id)
-                                        {
-
-                                            window.location.href = "customerdelete?id=" + id;
-                                        }
-                                    </script>
-                                    <div class="table-responsive">
-                                        <table class="datatable table table-stripped table table-hover table-center mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>CustomerID</th>
-                                                    <th>Name</th>
-                                                    <th>Phone</th>
-                                                    <th>Address</th>
-                                                    <th>Email</th>
-                                                    <th>Status</th>
-                                                    <th class="text-right">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach items="${requestScope.customers}" var="c">
-                                                    <tr>
-                                                        <td>${c.customerID}</td>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="profile.html">${c.name}</a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>${c.phone}</td>
-                                                        <td>${c.address}</td>
-                                                        <td>${c.email}</td>
-                                                        <td>
-                                                            <div class="actions"> <a href="#" class="btn btn-sm bg-success-light mr-2">Active</a> </div>
-                                                        </td>
-                                                        <td class="text-right">
-                                                            <div class="dropdown dropdown-action"> <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v ellipse_color"></i></a>
-                                                                <div class="dropdown-menu dropdown-menu-right"> <a class="dropdown-item" href="updatecustomer?id=${c.customerID}"><i class="fas fa-pencil-alt m-r-5"></i> Edit</a>
-                                                                    <a class="dropdown-item" href="deletecustomer?id=${c.customerID}" onclick="doDelete(${c.customerID})" ><i class="fas fa-trash-alt m-r-5"></i> Delete</a> </div>
-                                                            </div>
-<!--                                                            <div id="delete_asset" class="modal fade delete-modal" role="dialog">
-                                                                <div class="modal-dialog modal-dialog-centered">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-body text-center"> <img src="assets/img/sent.png" alt="" width="50" height="46">
-                                                                            <h3 class="delete_class">Are you sure want to delete this Asset?</h3>
-                                                                            <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                                                                                <button type="submit" onclick="doDelete(${c.customerID})" class="btn btn-danger">Delete</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>-->
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--                <div id="delete_asset" class="modal fade delete-modal" role="dialog">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-body text-center"> <img src="assets/img/sent.png" alt="" width="50" height="46">
-                                                <h3 class="delete_class">Are you sure want to delete this Asset?</h3>
-                                                <div class="m-t-20"> <a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </div>
-                                            </div>
+                        <div class="col-lg-12">
+                            <form action="addeachroom" method="POST">
+                                <div class="row formtype">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Room ID</label>
+                                            <input class="form-control" name="roomid" type="text"> 
                                         </div>
                                     </div>
-                                </div>-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <input class="form-control" name="desc" type="text"> 
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group header-item">
+                                            <label>Type Of Room</label>
+                                            <select name="typeID" class="form-control">
+                                                <c:forEach items="${requestScope.typeRooms}" var="tr">
+                                                    <option value="${tr.roomTypeID}">${tr.typeName}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Message</label>
+                                            <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-primary buttonedit ml-2" value="Save"/>
+                                <button type="button" class="btn btn-primary buttonedit">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
-        <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+
         <script src="${contextPath}/css/assets/js/jquery-3.5.1.min.js"></script>
+
         <script src="${contextPath}/css/assets/js/popper.min.js"></script>
         <script src="${contextPath}/css/assets/js/bootstrap.min.js"></script>
-        <script src="${contextPath}/css/assets/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script src="${contextPath}/css/assets/plugins/datatables/datatables.min.js"></script>
+        <script src="${contextPath}/css/assets/js/moment.min.js"></script>
+        <script src="${contextPath}/css/assets/js/select2.min.js"></script>
+
         <script src="${contextPath}/css/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
         <script src="${contextPath}/css/assets/plugins/raphael/raphael.min.js"></script>
+
+        <script src="${contextPath}/css/assets/js/bootstrap-datetimepicker.min.js"></script>
+
         <script src="${contextPath}/css/assets/js/script.js"></script>
+        <script>
+            $(function () {
+                $('#datetimepicker3').datetimepicker({
+                    format: 'LT'
+
+                });
+            });
+        </script>
     </body>
 </html>

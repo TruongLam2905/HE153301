@@ -371,86 +371,43 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Customer ID</label>
-                                            <input class="form-control" type="text" value="${requestScope.customer.customerID}">
+                                            <input class="form-control" type="text" name="id" value="${requestScope.customer.customerID}">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input class="form-control" type="text" value="${requestScope.customer.name}">
+                                            <input class="form-control" type="text" name="name" value="${requestScope.customer.name}">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Phone</label>
-                                            <input class="form-control" type="text" value="${requestScope.customer.phone}">
+                                            <input class="form-control" type="text" name="phone" value="${requestScope.customer.phone}">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Total Members</label>
-                                            <select class="form-control" id="sel3" name="sellist1">
-                                                <option>Select</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
+                                            <label>Email</label>
+                                            <input class="form-control" type="text" name="email" value="${requestScope.customer.email}">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Date</label>
-                                            <div class="cal-icon">
-                                                <input type="text" class="form-control datetimepicker">
-                                            </div>
+                                            <label>Address</label>
+                                            <input type="text" class="form-control" name="address" value="${requestScope.customer.address}">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Time</label>
-                                            <div class="time-icon">
-                                                <input type="text" class="form-control" id="datetimepicker3">
-                                            </div>
+                                            <label>Username</label>
+                                            <input class="form-control" type="text" name="user" value="${requestScope.customer.user}">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Arrival Date</label>
-                                            <div class="cal-icon">
-                                                <input type="text" class="form-control datetimepicker">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Depature Date</label>
-                                            <div class="cal-icon">
-                                                <input type="text" class="form-control datetimepicker">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Email ID</label>
-                                            <input type="text" class="form-control" id="usr">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Phone Number</label>
-                                            <input type="text" class="form-control" id="usr1">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>File Upload</label>
-                                            <div class="custom-file mb-3">
-                                                <input type="file" class="custom-file-input" id="customFile"
-                                                       name="filename">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                            </div>
+                                            <label>Password</label>
+                                            <input class="form-control" type="text" name="pass" value="${requestScope.customer.pass}">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -460,10 +417,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                <input type="submit" class="btn btn-primary buttonedit" value="Save"/>
                             </form>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary buttonedit">Save</button>
                 </div>
             </div>
 

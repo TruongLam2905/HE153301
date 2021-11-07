@@ -25,6 +25,34 @@ import model.RoomType;
  */
 public class RoomDBContext extends DBContext {
 
+    public ArrayList<Room> getAllRooms() {
+        ArrayList<Room> Rooms = new ArrayList<>();
+        try {
+
+            String sql = "SELECT RoomID,rt.RoomTypeID,RoomStatus, r.Description,rt.TypeName,rt.Description,Price,MaxGuest \n"
+                    + "FROM Room r INNER JOIN RoomType rt on r.RoomTypeID = rt.RoomTypeID";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                RoomType rt = new RoomType();
+                rt.setRoomTypeID(rs.getInt("RoomTypeID"));
+                rt.setTypeName(rs.getString("TypeName"));
+                rt.setDescription(rs.getString("Description"));
+                rt.setPrice(rs.getDouble("Price"));
+                rt.setMaxGuest(rs.getInt("MaxGuest"));
+                Room r = new Room();
+                r.setRoomID(rs.getInt("RoomID"));
+                r.setDescription(rs.getString("Description"));
+                r.setRoomStatus(rs.getBoolean("RoomStatus"));
+                r.setRoomType(rt);
+                Rooms.add(r);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Rooms;
+    }
+
     public ArrayList<RoomType> getTypeRooms() {
         ArrayList<RoomType> typeRooms = new ArrayList<>();
         try {
@@ -301,6 +329,38 @@ public class RoomDBContext extends DBContext {
             Logger.getLogger(RoomDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public void delete(int roomid) {
+        try {
+            String sql = "DELETE FROM [Room]\n"
+                    + "      WHERE RoomID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, roomid);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void update(Room r) {
+        try {
+            String sql = "UPDATE [Room]\n"
+                    + "   SET [RoomID] = ?\n"
+                    + "      ,[RoomTypeID] = ?\n"
+                    + "      ,[RoomStatus] = ?\n"
+                    + "      ,[Description] = ?\n"
+                    + " WHERE RoomID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, r.getRoomID());
+            stm.setInt(2, r.getRoomType().getRoomTypeID());
+            stm.setBoolean(3, r.isRoomStatus());
+            stm.setString(4, r.getDescription());
+            stm.setInt(5, r.getRoomID());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

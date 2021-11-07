@@ -3,26 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.admin;
+package controller.eachroom;
 
-import dal.BookingDBContext;
 import dal.RoomDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Booking;
-import model.Customer;
-import model.Room;
 
 /**
  *
  * @author Admin
  */
-public class AdminController extends HttpServlet {
+public class DeleteEachRoomController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,20 +30,10 @@ public class AdminController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BookingDBContext bDB = new BookingDBContext();
-        ArrayList<Booking> bookings = bDB.getBooking();
-        request.setAttribute("bookings", bookings);
-        request.setAttribute("total", bookings.size());
+        String roomID = request.getParameter("id");
         RoomDBContext rDB = new RoomDBContext();
-        ArrayList<Room> allRooms = rDB.getAllRooms();
-        int total = 0;
-        for (Room room : allRooms) {
-            if(!room.isRoomStatus()) {
-                total++;
-            }
-        }
-        request.setAttribute("totalroom", total);
-        request.getRequestDispatcher("../view/admin/dashboard.jsp").forward(request, response);
+        rDB.delete(Integer.parseInt(roomID));
+        response.sendRedirect("listEachroom");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -5,6 +5,7 @@
  */
 package controller.booking;
 
+import dal.TransactionDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,8 +33,10 @@ public class PaymentController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Customer customer = (Customer) request.getSession(false).getAttribute("user");
+        TransactionDBContext tDB = new TransactionDBContext();
+        Transaction transs = tDB.get(customer);
         Transaction trans = (Transaction) request.getSession(false).getAttribute("trans");
-        request.setAttribute("trans", trans);
+        request.setAttribute("trans", transs);
         request.setAttribute("customer", customer);
         request.getRequestDispatcher("../view/booking/payment.jsp").forward(request, response);
     }

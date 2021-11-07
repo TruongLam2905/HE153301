@@ -1,6 +1,6 @@
 <%-- 
-    Document   : bookingupdate
-    Created on : Oct 31, 2021, 2:12:31 PM
+    Document   : invoices
+    Created on : Nov 8, 2021, 2:01:18 AM
     Author     : Admin
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -172,7 +172,7 @@
                                         class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
                                     <li><a href="all-booking.html"> All Booking </a></li>
-                                    <li><a class="active" href="edit-booking.html"> Edit Booking </a></li>
+                                    <li><a href="edit-booking.html"> Edit Booking </a></li>
                                     <li><a href="add-booking.html"> Add Booking </a></li>
                                 </ul>
                             </li>
@@ -245,7 +245,7 @@
                                 <a href="#"><i class="far fa-money-bill-alt"></i> <span> Accounts </span> <span
                                         class="menu-arrow"></span></a>
                                 <ul class="submenu_class" style="display: none;">
-                                    <li><a href="invoices.html">Invoices </a></li>
+                                    <li><a class="active" href="invoices.html">Invoices </a></li>
                                     <li><a href="payments.html">Payments </a></li>
                                     <li><a href="expenses.html">Expenses </a></li>
                                     <li><a href="taxes.html">Taxes </a></li>
@@ -360,65 +360,117 @@
                     <div class="page-header">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="page-title mt-5">Edit Booking</h3>
+                                <div class="mt-5">
+                                    <h4 class="card-title float-left mt-2">Invoices</h4>
+                                    <a href="create-invoice.html" class="btn btn-primary float-right veiwbutton">Create New
+                                        Invoice</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <form action="updatecustomer" method="POST">
+                            <form>
                                 <div class="row formtype">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Customer ID</label>
-                                            <input class="form-control" type="text" name="id" value="${requestScope.customer.customerID}">
+                                            <label>From</label>
+                                            <div class="cal-icon">
+                                                <input type="text" class="form-control datetimepicker">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Name</label>
-                                            <input class="form-control" type="text" name="name" value="${requestScope.customer.name}">
+                                            <label>To</label>
+                                            <div class="cal-icon">
+                                                <input type="text" class="form-control datetimepicker">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Phone</label>
-                                            <input class="form-control" type="text" name="phone" value="${requestScope.customer.phone}">
+                                            <label>Leave Status</label>
+                                            <select class="form-control" id="sel1" name="sellist1">
+                                                <option>Select</option>
+                                                <option>Pending</option>
+                                                <option>Approved</option>
+                                                <option>Rejected</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Email</label>
-                                            <input class="form-control" type="text" name="email" value="${requestScope.customer.email}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Address</label>
-                                            <input type="text" class="form-control" name="address" value="${requestScope.customer.address}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Username</label>
-                                            <input class="form-control" type="text" name="user" value="${requestScope.customer.user}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <input class="form-control" type="text" name="pass" value="${requestScope.customer.pass}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Message</label>
-                                            <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+                                            <label>Search</label>
+                                            <a href="#" class="btn btn-success btn-block mt-0 search_button"> Search </a>
+
                                         </div>
                                     </div>
                                 </div>
-                                <input type="submit" class="btn btn-primary buttonedit" value="Save"/>
                             </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card card-table">
+
+                                <div class="card-body booking_card">
+                                    <div class="table-responsive">
+                                        <table class="datatable table table-stripped table table-hover table-center mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Invoice Number</th>
+                                                    <th>Name</th>
+                                                    <th>Created Date</th>
+                                                    <th>Due Date</th>
+                                                    <th>Payment Type</th>
+                                                    <th>Amount</th>
+                                                    <th class="text-right">Status</th>
+                                                    <th class="text-right">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <c:forEach items="${requestScope.trans}" var="t">
+                                                    <tr>
+                                                        <td>
+                                                            1
+                                                        </td>
+                                                        <td>${t.trans_id}</td>
+                                                        <td>${t.customer.name}</td>
+                                                        <td>${t.trans_date}</td>
+                                                        <td>6-04-2020</td>
+                                                        <td>${t.paymenttype}</td>
+                                                        <td>${t.total}</td>
+                                                        <td class="text-right">
+                                                            <div class="actions">
+                                                                <a href="#" class="btn btn-sm bg-success-light mr-2">
+                                                                    Active
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <div class="dropdown dropdown-action">
+                                                                <a href="#" class="action-icon dropdown-toggle"
+                                                                   data-toggle="dropdown" aria-expanded="false"><i
+                                                                        class="fas fa-ellipsis-v ellipse_color"></i></a>
+                                                                <div class="dropdown-menu dropdown-menu-right">
+                                                                    <a class="dropdown-item" href="edit-invoice.html"><i
+                                                                            class="fas fa-pencil-alt m-r-5"></i> Edit</a>
+                                                                    <a class="dropdown-item" href="#" data-toggle="modal"
+                                                                       data-target="#delete_asset"><i
+                                                                            class="fas fa-trash-alt m-r-5"></i> Delete</a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

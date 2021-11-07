@@ -104,6 +104,34 @@
         <servlet-name>CustomerUpdateController</servlet-name>
         <servlet-class>controller.admin.customer.CustomerUpdateController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerDeleteController</servlet-name>
+        <servlet-class>controller.admin.customer.CustomerDeleteController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eachRoomController</servlet-name>
+        <servlet-class>controller.eachroom.eachRoomController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddEachRoomController</servlet-name>
+        <servlet-class>controller.eachroom.AddEachRoomController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteEachRoomController</servlet-name>
+        <servlet-class>controller.eachroom.DeleteEachRoomController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProfileController</servlet-name>
+        <servlet-class>controller.admin.ProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TransactionController</servlet-name>
+        <servlet-class>controller.booking.TransactionController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateEachRoomController</servlet-name>
+        <servlet-class>controller.eachroom.UpdateEachRoomController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TestController</servlet-name>
         <url-pattern>/view/test</url-pattern>
@@ -199,6 +227,34 @@
     <servlet-mapping>
         <servlet-name>CustomerUpdateController</servlet-name>
         <url-pattern>/view/updatecustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerDeleteController</servlet-name>
+        <url-pattern>/view/customerdelete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eachRoomController</servlet-name>
+        <url-pattern>/view/listEachroom</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddEachRoomController</servlet-name>
+        <url-pattern>/view/addeachroom</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteEachRoomController</servlet-name>
+        <url-pattern>/view/deleteeach</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileController</servlet-name>
+        <url-pattern>/view/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TransactionController</servlet-name>
+        <url-pattern>/view/transaction</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateEachRoomController</servlet-name>
+        <url-pattern>/view/updateeachroom</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
